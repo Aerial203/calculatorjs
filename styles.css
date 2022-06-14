@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bodyColor: #4700D8;
+    --bodyColor1: #0066FF;
+    --screenColor: #090030;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: radial-gradient(var(--bodyColor) 5.66%, var(--bodyColor1) 94.35%);
+    background-image: linear-gradient(45.34deg, var(--bodyColor) 5.66%, var(--bodyColor1) 94.35%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container, .calculator {
+    height: 400px;
+    width: 300px;
+}
+
+.screen {
+    background-color: var(--screenColor);
+    height:100px;
+    width: 300px;
+}
