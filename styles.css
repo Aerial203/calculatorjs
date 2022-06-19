@@ -7,12 +7,16 @@
     --bodyColor1: #0066FF;
     --screenColor: #090030;
     --btn: #DFF6FF;
+    --hoverBtn: #3cefff;
+    --btnSize: 75px;
+    --calculatorHeight: 100px;
 }
 
 
 body {
     margin: 0;
     padding: 0;
+    font-family: "Arial", "sans-serif";
     background-image: radial-gradient(var(--bodyColor) 5.66%, var(--bodyColor1) 94.35%);
     background-image: linear-gradient(45.34deg, var(--bodyColor) 5.66%, var(--bodyColor1) 94.35%);
     height: 100vh;
@@ -28,6 +32,12 @@ table, tr, td, tbody {
     text-indent: 0;
 }
 
+.x-td {
+    margin: 0;
+    padding-left: 2px;
+    padding-right: 0px;
+}
+
 .container, .calculator, .screen, .btn {
     margin: 0;
     padding: 0;
@@ -41,28 +51,51 @@ table, tr, td, tbody {
 
 .calculator {
     background-color: white;
+    table-layout: fixed;
     height: 400px;
-    width: 308px;
+    width: 100%;
 }
 
 .screen {
     background-color: var(--screenColor);
-    height: 100px;
+    height: var(--calculatorHeight);
     width: 308px;
 }
 
+.screen1 {
+    width: 100%;
+    height: calc(var(--calculatorHeight) / 2.5);
+    color: white;
+    text-align: right;
+    padding: 10px;
+}
+
+.screen2 {
+    width: 100%;
+    height: calc(var(--calculatorHeight) / 2 + 10px);
+    font-weight: bold;
+    font-size: x-large;
+    color: white;
+    text-align: right;
+    padding: 10px;
+}
 
 .btn {
     margin: 0;
     height: 82px;
-    width: 75px;
+    width: var(--btnSize);
     border: none;
     background-color: var(--btn);
     color: black;
     font-weight: bold;
-    font-size: large;
+    font-size: x-large;
 }
 
 .btn:hover {
-    background-color: #3cefff;
+    background-color: var(--hoverBtn);
+}
+
+.large {
+    margin: 0;
+    width: calc(var(--btnSize) * 2);
 }
