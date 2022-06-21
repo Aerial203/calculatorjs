@@ -1,8 +1,8 @@
 const screen1 = document.querySelector(".screen1")
 const screen2 = document.querySelector(".screen2")
 
-const MUL_DIV_REGX = /(?<operand1>\d+)(?<operation>[\/\*])(?<operand2>\d+)/
-const ADD_SUB_REGX = /(?<operand1>\d+)(?<operation>[\+\-])(?<operand2>\d+)/
+const MUL_DIV_REGX = /(?<operand1>\S+)\s*(?<operation>[\/\*])\s*(?<operand2>\S+)/
+const ADD_SUB_REGX = /(?<operand1>\S+)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\S+)/
 
 
 document.addEventListener("click", e => {
