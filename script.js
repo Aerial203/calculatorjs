@@ -30,7 +30,7 @@ function parse(data) {
             if (!screen2.textContent) screen2.textContent = "0"
         } else if(data === "=") {
             screen1.textContent =  screen2.textContent
-            screen2.textContent = handleMath(data)
+            screen2.textContent = handleMath(screen1.textContent)
         } else {
             screen2.textContent += data
         }   
@@ -40,8 +40,20 @@ function parse(data) {
 
 
 function handleMath(equation) {
-    // const data = equation.match(REGX_MUL_DIV)
-    // console.log(data)
+    if (equation.match(MUL_DIV_REGX)) {
+        const result = calculate(equation.match(MUL_DIV_REGX).groups)
+        return result
+    }
     return "answer"
 }
 
+function calculate({ operand1, operand2, operation }) {
+    operand1 = parseFloat(operand1)
+    operand2 = parseFloat(operand2)
+    switch(operation) {
+        case '*':
+            return operand1 * operand2
+        case '/':
+            return operand1 / operand2
+    }
+}
