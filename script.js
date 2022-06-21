@@ -1,7 +1,9 @@
 const screen1 = document.querySelector(".screen1")
 const screen2 = document.querySelector(".screen2")
 
-const MUL_DIV_REGX = /(?<operand1>\S+)(?<operation>[\/\*])(?<operand2>\S+)/
+const MUL_DIV_REGX = /(?<operand1>\d+)(?<operation>[\/\*])(?<operand2>\d+)/
+const ADD_SUB_REGX = /(?<operand1>\d+)(?<operation>[\+\-])(?<operand2>\d+)/
+
 
 document.addEventListener("click", e => {
     if(!e.target.matches("button")) return
@@ -13,6 +15,7 @@ function parse(data) {
     if (screen2.textContent === "0" && data !== ".") {
         if (data === "ac" || data === "del") {
             screen2.textContent = "0"
+            screen1.textContent = ""
         } else {
             screen2.textContent = ""
             screen2.textContent += data
@@ -42,9 +45,14 @@ function parse(data) {
 function handleMath(equation) {
     if (equation.match(MUL_DIV_REGX)) {
         const result = calculate(equation.match(MUL_DIV_REGX).groups)
-        return result
+        const newEquation = equation.replace(equation.match(MUL_DIV_REGX)[0], result)
+        return handleMath(newEquation)
+    } else if(equation.match(ADD_SUB_REGX)) {
+        const result = calculate(equation.match(ADD_SUB_REGX).groups)
+        const newEquation = equation.replace(equation.match(ADD_SUB_REGX)[0], result)
+        return handleMath(newEquation)
     }
-    return "answer"
+    return equation
 }
 
 function calculate({ operand1, operand2, operation }) {
@@ -55,5 +63,9 @@ function calculate({ operand1, operand2, operation }) {
             return operand1 * operand2
         case '/':
             return operand1 / operand2
+        case '+':
+            return operand1 + operand2
+        case '-':
+            return operand1 - operand2
     }
 }
